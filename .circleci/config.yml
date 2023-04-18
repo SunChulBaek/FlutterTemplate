@@ -4,9 +4,9 @@ orbs:
   flutter: circleci/flutter@2.0.1
   slack: circleci/slack@4.12.1
 jobs:
-  android-deployment:
-    docker:
-      - image: cimg/android:2023.04
+  test:
+#    docker:
+#      - image: cimg/android:2023.04
     steps:
       - checkout
       - flutter/install_sdk_and_pub:
@@ -26,6 +26,6 @@ jobs:
           path: build/app/outputs/flutter-apk
           destination: apk
 workflows:
-  deployment:
+  test:
     jobs:
-      - android-deployment
+      - android-test
