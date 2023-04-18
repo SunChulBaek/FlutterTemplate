@@ -1,10 +1,10 @@
 version: 2.1
 orbs:
-  slack: circleci/slack@4.10.1
+  slack: circleci/slack@4.12.1
 jobs:
   build:
     docker:
-      - image: cirrusci/flutter
+      - image: cirruslabs/flutter:3.7.11
     steps:
       - checkout
       - run:
