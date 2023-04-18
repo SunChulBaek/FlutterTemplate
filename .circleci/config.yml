@@ -4,14 +4,14 @@ orbs:
   slack: circleci/slack@4.12.1
 jobs:
   build:
-#    docker:
-#      - image: cirrusci/flutter:3.7.7
+    docker:
+      - image: cirrusci/flutter:3.7.7
     steps:
       - checkout
       - flutter/install_sdk_and_pub:
           flutter_version: 3.7.11
       - flutter/install_android_gradle
-      - flutter/install_android_gem
+      - flutter/install_android_gemㅇ
       - run:
           name: Build Binaries
           command: flutter pub get;flutter build apk --build-name="1.0.0" --build-number=${CIRCLE_BUILD_NUM} --release;mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/FlutterTemplate-release-${CIRCLE_BUILD_NUM}.apk
