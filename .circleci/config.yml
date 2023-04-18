@@ -3,7 +3,7 @@ orbs:
   flutter: circleci/flutter@2.0.1
   slack: circleci/slack@4.12.1
 jobs:
-  build:
+  android-deployment:
     docker:
       - image: cimg/android:2023.04
     steps:
@@ -24,3 +24,11 @@ jobs:
       - store_artifacts:
           path: build/app/outputs/flutter-apk
           destination: apk
+workflows:
+  deployment:
+    jobs:
+      - build-approval:
+          type: approval
+      - android-deployment:
+          requires:
+            - build-approval
