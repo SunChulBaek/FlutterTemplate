@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  android: circleci/android@2.1.2
+  android: circleci/android@2.2.0
   flutter: circleci/flutter@2.0.1
   slack: circleci/slack@4.12.1
 jobs:
@@ -28,8 +28,4 @@ jobs:
 workflows:
   deployment:
     jobs:
-      - build-approval:
-          type: approval
-      - android-deployment:
-          requires:
-            - build-approval
+      - android-deployment
