@@ -4,7 +4,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cirruslabs/flutter:stable
+      - image: cirruslabs/flutter:3.10.0-1.1.pre
     steps:
       - checkout
       - run:
