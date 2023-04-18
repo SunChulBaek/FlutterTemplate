@@ -5,8 +5,6 @@ orbs:
   slack: circleci/slack@4.12.1
 jobs:
   release-build:
-#    docker:
-#      - image: cimg/android:2023.04
     steps:
       - checkout
       - flutter/install_sdk_and_pub:
