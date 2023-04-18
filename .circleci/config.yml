@@ -5,7 +5,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cirrusci/flutter:3.7.7
+      - image: cimg/android:2023.04
     steps:
       - checkout
       - flutter/install_sdk_and_pub:
