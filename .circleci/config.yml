@@ -1,17 +1,16 @@
 version: 2.1
 orbs:
-  flutter: circleci/flutter@2.0.1
+  flutter: circleci/flutter@2.0.1 # https://circleci.com/developer/orbs/orb/circleci/flutter
   slack: circleci/slack@4.12.1
 jobs:
-  distribute:
+  build:
     docker:
-      - image: cimg/android:2023.04
+      - image: cimg/android:2022.04 # 최신 tag는 gradle 버전이 맞지 않아서 빌드가 안됨
     steps:
       - checkout
-      - flutter/install_sdk_and_pub:
+      - flutter/install_sdk_and_pub: # install_sdk (sdk 설치) + install_pub (pub get)
           version: 3.7.11
       - flutter/install_android_gradle_dependencies
-      # - flutter/install_android_gem
       - run:
           name: Build Binaries
           command: flutter build apk --build-name="1.0.0" --build-number=${CIRCLE_BUILD_NUM} --release;mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/FlutterTemplate-release-${CIRCLE_BUILD_NUM}.apk
@@ -27,4 +26,4 @@ jobs:
 workflows:
   distribute:
     jobs:
-      - distribute
+      - build
