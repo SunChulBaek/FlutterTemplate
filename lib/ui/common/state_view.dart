@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/bloc/model/state_base.dart';
+import 'package:flutter_template/bloc/model/ui_state.dart';
 import 'package:flutter_template/ui/common/error.dart';
 
 import 'loading.dart';
@@ -11,7 +11,7 @@ class StateView extends StatelessWidget {
     super.key
   });
 
-  final StateXBase state;
+  final UiState state;
   final Widget? child;
 
   @override

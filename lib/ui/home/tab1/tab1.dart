@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/bloc/model/state_base.dart';
+import 'package:flutter_template/bloc/model/ui_state.dart';
 import 'package:flutter_template/injectable.dart';
 import 'package:flutter_template/ui/common/state_view.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
@@ -26,9 +26,9 @@ class _Tab1State extends TabState<Tab1Page> {
     super.build(context);
     return BlocProvider(
       create: (_) => _productsCubit,
-      child: BlocBuilder<ProductsCubit, StateXBase>(
+      child: BlocBuilder<ProductsCubit, UiState>(
         builder: (context, state) {
-          final products = state is StateX ? (state as StateX<ProductsData>).data.products : null;
+          final products = state is Success ? (state as Success<ProductsData>).data.products : null;
           return StateView(
             state: state,
             child: (products?.isEmpty ?? true)

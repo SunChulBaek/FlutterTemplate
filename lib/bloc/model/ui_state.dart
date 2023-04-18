@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
 
 @injectable
-abstract class StateXBase {
-  StateXBase({
+abstract class UiState {
+  UiState({
     required this.value,
   });
 
@@ -13,19 +13,19 @@ abstract class StateXBase {
   bool get isSuccess => value == 2;
 
   @factoryMethod
-  factory StateXBase.from() => StateXLoading();
+  factory UiState.from() => Loading();
 }
 
-class StateXLoading extends StateXBase {
-  StateXLoading() : super(value: 0);
+class Loading extends UiState {
+  Loading() : super(value: 0);
 }
 
-class StateXError extends StateXBase {
-  StateXError() : super(value: 1);
+class Error extends UiState {
+  Error() : super(value: 1);
 }
 
-class StateX<T> extends StateXBase {
-  StateX({
+class Success<T> extends UiState {
+  Success({
     required this.data,
   }) : super(value: 2);
 

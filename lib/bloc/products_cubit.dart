@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_template/bloc/model/state_base.dart';
+import 'package:flutter_template/bloc/model/ui_state.dart';
 import 'package:flutter_template/data/model/product.dart';
 import 'package:flutter_template/data/repository.dart';
 import 'package:flutter_template/util/timber.dart';
@@ -20,22 +20,22 @@ class ProductsData with _$ProductsData {
 }
 
 @injectable
-class ProductsCubit extends Cubit<StateXBase> {
-  ProductsCubit(this._repository, StateXBase state) : super(state);
+class ProductsCubit extends Cubit<UiState> {
+  ProductsCubit(this._repository, UiState state) : super(state);
 
   final Repository _repository;
 
   void init([int skip = 0, int limit = 30]) async {
     try {
       final products = await _repository.getProducts(skip, limit);
-      return emit(StateX(
+      return emit(Success(
         data: ProductsData(
           products: products.products
         )
       ));
     } catch (e) {
       Timber.e(e);
-      emit(StateXError());
+      emit(Error());
     }
   }
 }

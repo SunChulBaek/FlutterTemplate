@@ -11,7 +11,7 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i5;
 
-import 'bloc/model/state_base.dart' as _i8;
+import 'bloc/model/ui_state.dart' as _i8;
 import 'bloc/products_cubit.dart' as _i6;
 import 'data/repository.dart' as _i9;
 import 'data/rest_client.dart' as _i7;
@@ -39,11 +39,11 @@ _i1.GetIt $initGetIt(
   gh.factory<_i5.PrettyDioLogger>(() => apiModule.logger);
   gh.factory<_i6.ProductsData>(() => _i6.ProductsData.from());
   gh.singleton<_i7.RestClient>(_i7.RestClient.from(get<_i3.Dio>()));
-  gh.factory<_i8.StateXBase>(() => _i8.StateXBase.from());
+  gh.factory<_i8.UiState>(() => _i8.UiState.from());
   gh.factory<_i9.Repository>(() => _i9.Repository(get<_i7.RestClient>()));
   gh.factory<_i6.ProductsCubit>(() => _i6.ProductsCubit(
         get<_i9.Repository>(),
-        get<_i8.StateXBase>(),
+        get<_i8.UiState>(),
       ));
   return get;
 }
