@@ -1,13 +1,11 @@
 version: 2.1
 orbs:
-  android: circleci/android@2.2.0
   flutter: circleci/flutter@2.0.1
   slack: circleci/slack@4.12.1
 jobs:
   distribute:
-    executor:
-      name: android/android-docker
-      tag: 2023.04.1
+    docker:
+      - image: cimg/android:2023.04
     steps:
       - checkout
       - flutter/install_sdk_and_pub:
