@@ -6,7 +6,7 @@ orbs:
 jobs:
   distribute:
     executor:
-      name: android/android-machine
+      name: android/android-docker
     steps:
       - flutter/install_sdk_and_pub:
           version: 3.7.11
