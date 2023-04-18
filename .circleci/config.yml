@@ -4,6 +4,8 @@ orbs:
   flutter: circleci/flutter@2.0.1
   slack: circleci/slack@4.12.1
 jobs:
+  unit-test:
+  android-test:
   release-build:
     steps:
       - checkout
@@ -26,6 +28,8 @@ jobs:
 workflows:
   test-and-build:
     jobs:
+      - unit-test
+      - android-test
       - release-build:
           filters:
             branches:
