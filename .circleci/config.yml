@@ -1,5 +1,6 @@
 version: 2.1
 orbs:
+  android: circleci/android@2.1.2
   flutter: circleci/flutter@2.0.1
   slack: circleci/slack@4.12.1
 jobs:
