@@ -1,5 +1,6 @@
 version: 2.1
 orbs:
+  android: circleci/android@2.2.0 # https://circleci.com/developer/orbs/orb/circleci/android for latest version
   flutter: circleci/flutter@2.0.1 # https://circleci.com/developer/orbs/orb/circleci/flutter
   slack: circleci/slack@4.12.1
 jobs:
@@ -11,6 +12,8 @@ jobs:
       - flutter/install_sdk_and_pub: # install_sdk (sdk 설치) + install_pub (pub get)
           version: 3.7.11
       - flutter/install_android_gradle_dependencies
+      - android/create-keystore-properties:
+          release-keystore: keystore
       - run:
           name: Build Binaries
           command: flutter build apk --build-name="1.0.0" --build-number=${CIRCLE_BUILD_NUM} --release;mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/FlutterTemplate-release-${CIRCLE_BUILD_NUM}.apk
