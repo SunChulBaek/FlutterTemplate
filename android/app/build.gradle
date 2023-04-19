@@ -64,8 +64,10 @@ android {
         release {
             def keystorePropFile = rootProject.file("keystore.properties")
             def keystoreProp = new Properties()
-            keystorePropFile.withReader('UTF-8') { reader ->
-                keystoreProp.load(reader)
+            if (keystorePropFile.exists()) {
+                keystorePropFile.withReader('UTF-8') { reader ->
+                    keystoreProp.load(reader)
+                }
             }
             keyAlias keystoreProp["releaseKeyAlias"]
             keyPassword keystoreProp["releaseKeyPassword"]
