@@ -69,7 +69,7 @@ android {
             }
             keyAlias keystoreProp["releaseKeyAlias"]
             keyPassword keystoreProp["releaseKeyPassword"]
-            storeFile file(rootProject.file(keystoreProp[releaseKeyStore] + "/release.keystore"))
+            storeFile file(rootProject.file(keystoreProp["releaseKeyStore"] + "/release.keystore"))
             storePassword keystoreProp["releaseStorePassword"]
         }
     }
