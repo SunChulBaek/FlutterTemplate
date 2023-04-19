@@ -30,6 +30,6 @@ jobs:
           path: build/app/outputs/flutter-apk
           destination: apk
 workflows:
-  distribute:
+  build:
     jobs:
       - build
