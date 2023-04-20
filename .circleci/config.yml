@@ -1,8 +1,33 @@
 version: 2.1
 orbs:
-  android: circleci/android@2.2.0 # https://circleci.com/developer/orbs/orb/circleci/android for latest version
+  android: circleci/android@2.2.0 # https://circleci.com/developer/orbs/orb/circleci/android
   flutter: circleci/flutter@2.0.1 # https://circleci.com/developer/orbs/orb/circleci/flutter
-  slack: circleci/slack@4.12.1
+  slack: circleci/slack@4.12.1 # https://circleci.com/developer/orbs/orb/circleci/slack
+commands:
+  slack_notify:
+    steps:
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: basic_success_1
+  build_and_archive:
+    parameters:
+      version-code:
+        default: ${CIRCLE_BUILD_NUM}
+        type: integer
+      version-name:
+        default: 1.0.0
+        type: string
+      target:
+        type: string
+    steps:
+      - run: flutter build apk --build-name=<< parameters.version-name >> --build-number=<< parameters.version-code >> --release
+      - run: mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/<< parameters.target >>
+      - store_artifacts:
+          path: build/app/outputs/flutter-apk
+          destination: apk
 jobs:
   build:
     docker:
@@ -13,22 +38,11 @@ jobs:
           version: 3.7.11
       - android/create-keystore-properties:
           release-keystore: keystore
-      - run: # keystore.properties 위치 조정
-          name: Move Keystore.properties
-          command: cp keystore.properties android/keystore.properties
+          working-directory: android
       - flutter/install_android_gradle_dependencies
-      - run:
-          name: Build Binaries
-          command: flutter build apk --build-name="1.0.0" --build-number=${CIRCLE_BUILD_NUM} --release;mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/FlutterTemplate-release-${CIRCLE_BUILD_NUM}.apk
-      - slack/notify:
-          event: fail
-          template: basic_fail_1
-      - slack/notify:
-          event: pass
-          template: basic_success_1
-      - store_artifacts:
-          path: build/app/outputs/flutter-apk
-          destination: apk
+      - build_and_archive:
+          target: FlutterTemplate-release-${CIRCLE_BUILD_NUM}.apk
+      - slack_notify
 workflows:
   build:
     jobs:
