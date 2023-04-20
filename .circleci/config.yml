@@ -16,7 +16,7 @@ commands:
     parameters:
       version-code:
         default: ${CIRCLE_BUILD_NUM}
-        type: integer
+        type: string
       version-name:
         default: 1.0.0
         type: string
