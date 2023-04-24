@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_template/injectable.dart';
-import 'package:flutter_template/ui/detail/product.dart';
+import 'package:flutter_template/ui/detail/photo.dart';
 import 'package:flutter_template/ui/detail/webview.dart';
 import 'package:flutter_template/ui/home/home.dart';
 import 'package:flutter_template/ui/splash/splash.dart';
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Flutter Template',
+      title: 'F템플릿',
       theme: ThemeData(
         fontFamily: 'Pretendard',
         primarySwatch: Colors.indigo,
@@ -52,16 +52,16 @@ class MyApp extends StatelessWidget {
             path: '/home',
             name: HomeScreen.routeName,
             builder: (context, state) => HomeScreen(
-              title: 'Flutter Template',
+              title: 'F템플릿',
               onClickProduct: (context, param) {
-                context.pushNamed(ProductScreen.routeName, extra: param as ProductParam);
+                context.pushNamed(PhotoScreen.routeName, extra: param as PhotoParam);
               },
             )
           ),
           GoRoute(
             path: '/product',
-            name: ProductScreen.routeName,
-            builder: (context, state) => ProductScreen(param: state.extra as ProductParam),
+            name: PhotoScreen.routeName,
+            builder: (context, state) => PhotoScreen(param: state.extra as PhotoParam),
           ),
           GoRoute(
             path: '/webview',

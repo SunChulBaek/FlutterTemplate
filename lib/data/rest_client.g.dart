@@ -13,7 +13,7 @@ class _RestClient implements RestClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://dummyjson.com/';
+    baseUrl ??= 'https://jsonplaceholder.typicode.com/';
   }
 
   final Dio _dio;
@@ -21,36 +21,27 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<Response2<List<Product>>> getProducts(
-    skip,
-    limit,
-  ) async {
+  Future<List<Photo>> getPhotos() async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'skip': skip,
-      r'limit': limit,
-    };
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<Response2<List<Product>>>(Options(
+    final Map<String, dynamic>? _data = null;
+    final _result =
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<Photo>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'products',
+              'photos',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = Response2<List<Product>>.fromJson(
-      _result.data!,
-      (json) => (json as List<dynamic>)
-          .map<Product>((i) => Product.fromJson(i as Map<String, dynamic>))
-          .toList(),
-    );
+    var value = _result.data!
+        .map((dynamic i) => Photo.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 

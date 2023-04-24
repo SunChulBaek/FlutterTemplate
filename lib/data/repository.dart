@@ -1,4 +1,4 @@
-import 'package:flutter_template/data/model/product.dart';
+import 'package:flutter_template/data/model/photo.dart';
 import 'package:flutter_template/data/model/response2.dart';
 import 'package:flutter_template/data/rest_client.dart';
 import 'package:injectable/injectable.dart';
@@ -9,5 +9,5 @@ class Repository {
 
   final RestClient _restClient;
 
-  Future<Response2<List<Product>>> getProducts(int skip, int limit) => _restClient.getProducts(skip, limit);
+  Future<List<Photo>> getPhotos() => _restClient.getPhotos();
 }

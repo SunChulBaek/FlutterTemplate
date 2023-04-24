@@ -4,7 +4,7 @@ import 'package:flutter_template/bloc/model/ui_state.dart';
 import 'package:flutter_template/injectable.dart';
 import 'package:flutter_template/ui/common/state_view.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
-import 'package:flutter_template/bloc/products_cubit.dart';
+import 'package:flutter_template/bloc/photos_cubit.dart';
 import 'package:flutter_template/ui/home/tab1/bottom_loader.dart';
 import 'package:flutter_template/ui/home/tab1/product_list_item.dart';
 
@@ -18,17 +18,17 @@ class Tab1Page extends TabPage {
 }
 
 class _Tab1State extends TabState<Tab1Page> {
-  final ProductsCubit _productsCubit = getIt<ProductsCubit>()..init();
+  final PhotosCubit _photosCubit = getIt<PhotosCubit>()..init();
   final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return BlocProvider(
-      create: (_) => _productsCubit,
-      child: BlocBuilder<ProductsCubit, UiState>(
+      create: (_) => _photosCubit,
+      child: BlocBuilder<PhotosCubit, UiState>(
         builder: (context, state) {
-          final products = state is Success ? (state as Success<ProductsData>).data.products : null;
+          final products = state is Success ? (state as Success<PhotosData>).data.photos : null;
           return StateView(
             state: state,
             child: (products?.isEmpty ?? true)
@@ -39,11 +39,12 @@ class _Tab1State extends TabState<Tab1Page> {
                 controller: _scrollController,
                 child: ListView.builder(
                   controller: _scrollController,
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                   itemBuilder: (BuildContext context, int index) {
-                    return index >= products!.length
+                    return index >= products.length
                       ? const BottomLoader()
                       : ProductListItem(
-                      product: products[index],
+                      photo: products[index],
                       onClick: widget.onClickItem
                     );
                   },
@@ -52,7 +53,7 @@ class _Tab1State extends TabState<Tab1Page> {
               ),
               onRefresh: () async {
                 showSnackBar("리프레시!!!");
-                _productsCubit.init();
+                _photosCubit.init();
               }
             )
           );

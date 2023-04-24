@@ -2,7 +2,7 @@ import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/event/bottom_nav_item_reselect_event.dart';
 import 'package:flutter_template/injectable.dart';
-import 'package:flutter_template/ui/detail/product.dart';
+import 'package:flutter_template/ui/detail/photo.dart';
 import 'package:flutter_template/ui/home/tab1/tab1.dart';
 import 'package:flutter_template/ui/home/tab2/tab2.dart';
 import 'package:flutter_template/ui/home/tab3/tab3.dart';
@@ -42,9 +42,9 @@ class _HomeState extends State<HomeScreen> {
 
   // index에 해당하는 더블탭 이벤트를 받음
   List<Tab> get _tabs => <Tab>[
-    Tab(Icons.home_outlined, Icons.home, '탭1', Tab1Page(index: 0, onClickItem: widget.onClickProduct)),
-    Tab(Icons.business_outlined, Icons.business, '탭2', const Tab2Page(index: 1)),
-    Tab(Icons.school_outlined, Icons.school, '탭3', const Tab3Page(index: 2)),
+    Tab(Icons.place_outlined, Icons.place, '탭1', Tab1Page(index: 0, onClickItem: widget.onClickProduct)),
+    Tab(Icons.chat_outlined, Icons.chat, '탭2', const Tab2Page(index: 1)),
+    Tab(Icons.camera_alt_outlined, Icons.camera_alt, '탭3', const Tab3Page(index: 2)),
     Tab(Icons.settings_outlined, Icons.settings, '탭4', const Tab4Page(index: 3))
   ];
 
