@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -27,13 +25,22 @@ class WebViewScreen extends StatefulWidget {
 
 class _WebViewState extends State<WebViewScreen> {
   bool isLoading = true;
+  WebViewController controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted);
 
   @override
   void initState() {
     super.initState();
-    if (Platform.isAndroid) {
-      WebView.platform = AndroidWebView();
-    }
+    controller.loadRequest(Uri.parse(widget.param.url));
+    controller.setNavigationDelegate(
+      NavigationDelegate(
+        onPageFinished: (String url) {
+          setState(() {
+            isLoading = false;
+          });
+        }
+      )
+    );
   }
 
   @override
@@ -51,15 +58,7 @@ class _WebViewState extends State<WebViewScreen> {
       ),
       body: Stack(
         children: <Widget>[
-          WebView(
-            initialUrl: widget.param.url,
-            javascriptMode: JavascriptMode.unrestricted,
-            onPageFinished: (url) {
-              setState(() {
-                isLoading = false;
-              });
-            },
-          ),
+          WebViewWidget(controller: controller),
           isLoading ? const Center(child: CircularProgressIndicator()) : Stack()
         ]
       )
