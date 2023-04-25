@@ -42,7 +42,17 @@ class PhotoScreen extends StatelessWidget {
                       ),
                     )
                   ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  errorWidget: (context, url, error) => AspectRatio(
+                      aspectRatio: 1,
+                      child: Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        color: Colors.grey,
+                        child: const Center(
+                            child: Icon(Icons.error),
+                        ),
+                      )
+                  ),
                 ),
                 AppBar(
                   title: const Text("Photo"),

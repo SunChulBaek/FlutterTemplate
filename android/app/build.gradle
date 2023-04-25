@@ -63,10 +63,13 @@ android {
                     keystoreProp.load(reader)
                 }
             }
-            keyAlias keystoreProp["releaseKeyAlias"]
-            keyPassword keystoreProp["releaseKeyPassword"]
-            storeFile file(rootProject.file(keystoreProp["releaseKeyStore"]))
-            storePassword keystoreProp["releaseStorePassword"]
+            def path = keystoreProp["releaseKeyStore"]
+            if (path != null) {
+                keyAlias keystoreProp["releaseKeyAlias"]
+                keyPassword keystoreProp["releaseKeyPassword"]
+                storeFile file(rootProject.file(keystoreProp["releaseKeyStore"]))
+                storePassword keystoreProp["releaseStorePassword"]
+            }
         }
     }
 
