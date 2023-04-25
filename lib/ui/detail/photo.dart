@@ -42,14 +42,13 @@ class PhotoScreen extends StatelessWidget {
                       ),
                     )
                   ),
-                  errorWidget: (context, url, error) => AspectRatio(
+                  errorWidget: (context, url, error) => const AspectRatio(
                       aspectRatio: 1,
-                      child: Container(
+                      child: SizedBox(
                         width: double.infinity,
                         height: double.infinity,
-                        color: Colors.grey,
-                        child: const Center(
-                            child: Icon(Icons.error),
+                        child: Center(
+                            child: Icon(Icons.error, color: Colors.red),
                         ),
                       )
                   ),
