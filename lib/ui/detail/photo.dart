@@ -22,39 +22,46 @@ class PhotoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Photo"),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            context.pop();
-          },
-        ),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CachedNetworkImage(
-            imageUrl: param.url,
-            fit: BoxFit.fitWidth,
-            placeholder: (context, url) => AspectRatio(
-              aspectRatio: 1,
-              child: Container(
-                width: double.infinity,
-                height: double.infinity,
-                color: Colors.grey,
-                child: const Center(
-                  child: CircularProgressIndicator()
+      body: SafeArea(
+        child:Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                CachedNetworkImage(
+                  imageUrl: param.url,
+                  fit: BoxFit.fitWidth,
+                  placeholder: (context, url) => AspectRatio(
+                    aspectRatio: 1,
+                    child: Container(
+                      width: double.infinity,
+                      height: double.infinity,
+                      color: Colors.grey,
+                      child: const Center(
+                        child: CircularProgressIndicator()
+                      ),
+                    )
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-              )
+                AppBar(
+                  title: const Text("Photo"),
+                  leading: IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      context.pop();
+                    },
+                  ),
+                  backgroundColor: Colors.transparent,
+                ),
+              ]
             ),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-          ),
-          Padding(
-              padding: const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
-              child: Text(param.title, style: const TextStyle(fontSize: 16))
-          ),
-        ]
+            Padding(
+                padding: const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
+                child: Text(param.title, style: const TextStyle(fontSize: 16))
+            ),
+          ]
+        )
       )
     );
   }
