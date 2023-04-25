@@ -23,7 +23,7 @@ class PhotoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(param.title),
+        title: const Text("Photo"),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -34,11 +34,21 @@ class PhotoScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 200,
-            child: CachedNetworkImage(
-              imageUrl: param.url,
-            )
+          CachedNetworkImage(
+            imageUrl: param.url,
+            fit: BoxFit.fitWidth,
+            placeholder: (context, url) => AspectRatio(
+              aspectRatio: 1,
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: Colors.grey,
+                child: const Center(
+                  child: CircularProgressIndicator()
+                ),
+              )
+            ),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
           Padding(
               padding: const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
