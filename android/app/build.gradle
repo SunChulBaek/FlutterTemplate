@@ -55,12 +55,6 @@ android {
     }
 
     signingConfigs {
-        debug {
-            keyAlias "androiddebugkey"
-            keyPassword "android"
-            storeFile file(rootProject.file("keystore/debug.keystore"))
-            storePassword  "android"
-        }
         release {
             def keystorePropFile = rootProject.file("keystore.properties")
             def keystoreProp = new Properties()
@@ -78,7 +72,7 @@ android {
 
     buildTypes {
         debug {
-            signingConfig signingConfigs.debug
+
         }
         release {
             // TODO: Add your own signing config for the release build.
