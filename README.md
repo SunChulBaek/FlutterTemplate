@@ -1,4 +1,4 @@
-# flutter_template [![CircleCI](https://dl.circleci.com/status-badge/img/gh/SunChulBaek/FlutterTemplate/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/SunChulBaek/FlutterTemplate/tree/main)
+# flutter_template ![Build Badge](https://github.com/SunChulBaek/FlutterTemplate/actions/workflows/build.yml/badge.svg)
 * Architecture
   * [BLoC](https://www.didierboelens.com/2018/08/reactive-programming-streams-bloc/) 패턴
 * Library
