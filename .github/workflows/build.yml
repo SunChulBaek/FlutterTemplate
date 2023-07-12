@@ -46,6 +46,7 @@ jobs:
           release-store-password: ${{ secrets.RELEASE_STORE_PASSWORD }}
       - uses: ./.github/actions/create-build-properties
         with:
+          build-properties: "android/build.properties"
           application-id: ${{ secrets.APP_ID }}
           compile-sdk: ${{ env.COMPILE_SDK }}
           min-sdk: ${{ env.MIN_SDK }}
