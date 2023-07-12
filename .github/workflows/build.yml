@@ -40,7 +40,7 @@ jobs:
           keystore-location: "android/keystore"
       - uses: ./.github/actions/create-keystore-properties
         with:
-          keystore: "android/keystore"
+          keystore-properties: "android/keystore.properties"
           release-key-alias: ${{ secrets.RELEASE_KEY_ALIAS }}
           release-key-password: ${{ secrets.RELEASE_KEY_PASSWORD }}
           release-store-password: ${{ secrets.RELEASE_STORE_PASSWORD }}
