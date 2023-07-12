@@ -55,7 +55,6 @@ jobs:
           version-name: ${{ env.VERSION_NAME }}
       - uses: ./.github/actions/flutter_build_and_archive
         with:
-          apk-path: "build/app/outputs/flutter-apk"
           apk-name: "${{ vars.APK_NAME }}-${{ env.VERSION_CODE }}.apk"
           slack-token: ${{ secrets.SLACK_TOKEN }}
           slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}

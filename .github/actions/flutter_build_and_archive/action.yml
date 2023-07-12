@@ -21,7 +21,7 @@ inputs:
   apk-path:
     description: "apk path"
     required: false
-    default: "app/build/outputs/apk/release"
+    default: "build/app/outputs/flutter-apk"
   apk-name:
     description: "apk name"
     required: true
