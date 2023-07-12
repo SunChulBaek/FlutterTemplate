@@ -23,10 +23,6 @@ env:
   TARGET_SDK: 33
   FLUTTER_VERSION: 3.10.5
   FLUTTER_CHANNEL: stable
-  APK_PATH: build/app/outputs/flutter-apk
-  KEYSTORE: keystore
-  KEYSTORE_PROPERTIES: android/keystore.properties
-  BUILD_PROPERTIES: android/build.properties
 
 jobs:
   build:
