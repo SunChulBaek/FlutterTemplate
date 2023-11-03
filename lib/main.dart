@@ -5,8 +5,11 @@ import 'package:flutter_template/injectable.dart';
 import 'package:flutter_template/ui/detail/photo.dart';
 import 'package:flutter_template/ui/detail/webview.dart';
 import 'package:flutter_template/ui/home/home.dart';
+import 'package:flutter_template/ui/home/tab1/tab1_view_model.dart';
+import 'package:flutter_template/ui/home/tab3/counter_view_model.dart';
 import 'package:flutter_template/ui/splash/splash.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -18,7 +21,15 @@ class MyHttpOverrides extends HttpOverrides {
 void main() {
   HttpOverrides.global = MyHttpOverrides();
   configureDependencies();
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => getIt<Tab1ViewModel>()),
+        ChangeNotifierProvider(create: (_) => getIt<CounterViewModel>()),
+      ],
+      child: const MyApp()
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

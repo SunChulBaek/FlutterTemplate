@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/resources/resources.dart';
-import 'package:flutter_template/ui/detail/webview.dart';
-import 'package:flutter_template/ui/home/tab_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import '../../../resources/resources.dart';
+import '../../detail/webview.dart';
+import '../../home/tab_page.dart';
 
 class Tab2Page extends TabPage {
   const Tab2Page({Key? key, required int index}) : super(key: key, index: index);

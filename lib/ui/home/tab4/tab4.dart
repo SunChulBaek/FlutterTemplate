@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_template/resources/resources.dart';
-import 'package:flutter_template/ui/home/tab_page.dart';
+import '../../home/tab_page.dart';
+import '../../../resources/resources.dart';
 
 class Tab4Page extends TabPage {
   const Tab4Page({Key? key, required int index}) : super(key: key, index: index);

@@ -2,12 +2,10 @@ import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/event/bottom_nav_item_reselect_event.dart';
 import 'package:flutter_template/injectable.dart';
-import 'package:flutter_template/ui/detail/photo.dart';
 import 'package:flutter_template/ui/home/tab1/tab1.dart';
 import 'package:flutter_template/ui/home/tab2/tab2.dart';
 import 'package:flutter_template/ui/home/tab3/tab3.dart';
 import 'package:flutter_template/ui/home/tab4/tab4.dart';
-import 'package:go_router/go_router.dart';
 
 class Tab {
   IconData icon;

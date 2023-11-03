@@ -89,9 +89,10 @@ class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
 }
 
 /// @nodoc
-abstract class _$$_PhotoCopyWith<$Res> implements $PhotoCopyWith<$Res> {
-  factory _$$_PhotoCopyWith(_$_Photo value, $Res Function(_$_Photo) then) =
-      __$$_PhotoCopyWithImpl<$Res>;
+abstract class _$$PhotoImplCopyWith<$Res> implements $PhotoCopyWith<$Res> {
+  factory _$$PhotoImplCopyWith(
+          _$PhotoImpl value, $Res Function(_$PhotoImpl) then) =
+      __$$PhotoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -103,9 +104,11 @@ abstract class _$$_PhotoCopyWith<$Res> implements $PhotoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res, _$_Photo>
-    implements _$$_PhotoCopyWith<$Res> {
-  __$$_PhotoCopyWithImpl(_$_Photo _value, $Res Function(_$_Photo) _then)
+class __$$PhotoImplCopyWithImpl<$Res>
+    extends _$PhotoCopyWithImpl<$Res, _$PhotoImpl>
+    implements _$$PhotoImplCopyWith<$Res> {
+  __$$PhotoImplCopyWithImpl(
+      _$PhotoImpl _value, $Res Function(_$PhotoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -117,7 +120,7 @@ class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res, _$_Photo>
     Object? url = null,
     Object? thumbnailUrl = null,
   }) {
-    return _then(_$_Photo(
+    return _then(_$PhotoImpl(
       albumId: null == albumId
           ? _value.albumId
           : albumId // ignore: cast_nullable_to_non_nullable
@@ -144,8 +147,8 @@ class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res, _$_Photo>
 
 /// @nodoc
 
-class _$_Photo implements _Photo {
-  _$_Photo(
+class _$PhotoImpl implements _Photo {
+  _$PhotoImpl(
       {@JsonKey(name: 'albumId') required this.albumId,
       @JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'title') required this.title,
@@ -177,7 +180,7 @@ class _$_Photo implements _Photo {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Photo &&
+            other is _$PhotoImpl &&
             (identical(other.albumId, albumId) || other.albumId == albumId) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
@@ -193,8 +196,8 @@ class _$_Photo implements _Photo {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PhotoCopyWith<_$_Photo> get copyWith =>
-      __$$_PhotoCopyWithImpl<_$_Photo>(this, _$identity);
+  _$$PhotoImplCopyWith<_$PhotoImpl> get copyWith =>
+      __$$PhotoImplCopyWithImpl<_$PhotoImpl>(this, _$identity);
 }
 
 abstract class _Photo implements Photo {
@@ -204,7 +207,7 @@ abstract class _Photo implements Photo {
           @JsonKey(name: 'title') required final String title,
           @JsonKey(name: 'url') required final String url,
           @JsonKey(name: 'thumbnailUrl') required final String thumbnailUrl}) =
-      _$_Photo;
+      _$PhotoImpl;
 
   @override
   @JsonKey(name: 'albumId')
@@ -223,6 +226,6 @@ abstract class _Photo implements Photo {
   String get thumbnailUrl;
   @override
   @JsonKey(ignore: true)
-  _$$_PhotoCopyWith<_$_Photo> get copyWith =>
+  _$$PhotoImplCopyWith<_$PhotoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,10 +1,7 @@
 # flutter_template ![Build Badge](https://github.com/SunChulBaek/FlutterTemplate/actions/workflows/build.yml/badge.svg)
-* Architecture
-  * [BLoC](https://www.didierboelens.com/2018/08/reactive-programming-streams-bloc/) 패턴
 * Library
-  * BLoc
-    * [bloc](https://pub.dev/packages/bloc)
-    * [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+  * 상태관리
+    * [provider](https://pub.dev/packages/provider)
   * DI
     * [injectable](https://pub.dev/packages/injectable)
     * [get_it](https://pub.dev/packages/get_it)
