@@ -1,6 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 typedef SDialogButtonCallback<T> = void Function(T?);
+
+typedef SDialogFutureCallback<T, R> = FutureOr<R> Function(T?);
+
+class SDialogLoginData {
+  const SDialogLoginData({
+    required this.username,
+    required this.password
+  });
+  final String username;
+  final String password;
+}
 
 class _SDialogData<T> {
   _SDialogData({
@@ -27,6 +40,7 @@ class SDialog<T> extends StatefulWidget {
     this.negativeButton,
     this.onClickPositive,
     this.onClickNegative,
+    this.isIdPw,
     super.key
   });
 
@@ -39,6 +53,9 @@ class SDialog<T> extends StatefulWidget {
   final Color? activeColor;
   final Color? inactiveColor;
 
+  // id, pw
+  final bool? isIdPw;
+
   final String? positiveButton;
   final String? negativeButton;
   final SDialogButtonCallback<T>? onClickPositive;
@@ -48,19 +65,38 @@ class SDialog<T> extends StatefulWidget {
   State<StatefulWidget> createState() => _SDialogState();
 
   void show(BuildContext context) => showDialog<_SDialogData<T>>(
-    context: context,
-    builder: (context) => this
+      context: context,
+      builder: (context) => this
   ).then((value) {
     if (value?.result == _resultPositive) {
-      onClickPositive?.call(value?.data);
+      return onClickPositive?.call(value?.data);
     } else if (value?.result == _resultNegative) {
-      onClickNegative?.call(value?.data);
+      return onClickNegative?.call(value?.data);
+    }
+  });
+
+  Future<R> showThen<R>({
+    required BuildContext context,
+    SDialogFutureCallback<T, R>? onFuturePositive,
+    SDialogFutureCallback<T, R>? onFutureNegative,
+  }) => showDialog(
+      context: context,
+      builder: (context) => this
+  ).then((value) {
+    if (value?.result == _resultPositive && onFuturePositive != null) {
+      return onFuturePositive(value?.data);
+    } else if (value?.result == _resultNegative && onFutureNegative != null) {
+      return onFutureNegative(value?.data);
+    } else {
+      return Future.value(value);
     }
   });
 }
 
 class _SDialogState extends State<SDialog> {
   int? _index;
+  String _username = "";
+  String _password = "";
 
   @override
   void initState() {
@@ -91,27 +127,35 @@ class _SDialogState extends State<SDialog> {
               widget.choices![i],
               style: TextStyle(
                 color: i == (_index ?? 0)
-                    ? (widget.activeColor ?? SDialog.activeColorForChoice)
-                    : widget.inactiveColor
+                  ? (widget.activeColor ?? SDialog.activeColorForChoice)
+                  : widget.inactiveColor
               )
             )
-          )
+          ),
+        if (widget.isIdPw ?? false)
+          TextField(
+            decoration: const InputDecoration(
+              hintText: "사용자 이름"
+            ),
+            onChanged: (text) {
+              setState(() { _username = text; });
+            },
+          ),
+        if (widget.isIdPw ?? false)
+          TextField(
+            decoration: const InputDecoration(
+              hintText: "비밀번호"
+            ),
+            obscureText: true,
+            enableSuggestions: false,
+            autocorrect: false,
+            onChanged: (text) {
+              setState(() { _password = text; });
+            },
+          ),
       ]
     ),
     actions: [
-      if (widget.positiveButton != null)
-        TextButton(
-          child: Text(widget.positiveButton!),
-          onPressed: () {
-            Navigator.pop(
-              context,
-              _SDialogData(
-                result: SDialog._resultPositive,
-                data: _index
-              )
-            );
-          }
-        ),
       if (widget.negativeButton != null)
         TextButton(
           child: Text(widget.negativeButton!),
@@ -120,11 +164,25 @@ class _SDialogState extends State<SDialog> {
               context,
               _SDialogData(
                 result: SDialog._resultNegative,
-                data: _index
               )
             );
           }
-        )
+        ),
+      if (widget.positiveButton != null)
+        TextButton(
+          child: Text(widget.positiveButton!),
+          onPressed: () {
+            Navigator.pop(
+              context,
+              _SDialogData(
+                result: SDialog._resultPositive,
+                data: (widget.isIdPw ?? false)
+                  ? SDialogLoginData(username: _username, password: _password)
+                  : _index
+              )
+            );
+          }
+        ),
     ],
   );
 }

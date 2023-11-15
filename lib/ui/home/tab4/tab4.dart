@@ -38,7 +38,7 @@ class _Tab4State extends TabState<Tab4Page> {
           ElevatedButton(
             onPressed: () {
               const SDialog(
-                title: "Lorem Inpsum",
+                title: "Lorem Ipsum",
                 content: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
                 positiveButton: "확인",
                 negativeButton: "취소",
