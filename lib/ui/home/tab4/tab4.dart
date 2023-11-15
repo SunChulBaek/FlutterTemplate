@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_template/ui/common/s_dialog.dart';
 import '../../home/tab_page.dart';
 import '../../../resources/resources.dart';
 
@@ -25,6 +26,25 @@ class _Tab4State extends TabState<Tab4Page> {
               showSnackBar('탭4!!!');
             },
             child: const Text('Show SnackBar')
+          ),
+          ElevatedButton(
+            onPressed: () {
+              const SDialog(
+                content: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+              ).show(context);
+            },
+            child: const Text('SDialog (content)')
+          ),
+          ElevatedButton(
+            onPressed: () {
+              const SDialog(
+                title: "Lorem Inpsum",
+                content: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+                positiveButton: "확인",
+                negativeButton: "취소",
+              ).show(context);
+            },
+            child: const Text('SDialog (title + content + buttons)'),
           ),
           const Text('이것은 svg 이미지'),
           SvgPicture.asset(
