@@ -53,9 +53,9 @@ class _HomeState extends State<HomeScreen> {
     return WillPopScope(onWillPop: () {
       DateTime now = DateTime.now();
       if (currentBackPressTime == null ||
-          now.difference(currentBackPressTime!) > Duration(seconds: 2)) {
+          now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
         currentBackPressTime = now;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('\'뒤로\' 버튼 한번 더 누르시면 종료됩니다.')));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('\'뒤로\' 버튼 한번 더 누르시면 종료됩니다.')));
         return Future.value(false);
       }
       return Future.value(true);

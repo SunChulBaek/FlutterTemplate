@@ -13,7 +13,7 @@ class PhotoParam {
 }
 
 class PhotoScreen extends StatelessWidget {
-  PhotoScreen({Key? key, required this.param}) : super(key: key);
+  const PhotoScreen({super.key, required this.param});
 
   static const routeName = "/photo";
 

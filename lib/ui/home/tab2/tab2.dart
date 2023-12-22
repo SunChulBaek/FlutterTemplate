@@ -6,7 +6,7 @@ import '../../detail/webview.dart';
 import '../../home/tab_page.dart';
 
 class Tab2Page extends TabPage {
-  const Tab2Page({Key? key, required int index}) : super(key: key, index: index);
+  const Tab2Page({super.key, required super.index});
 
   @override
   State<StatefulWidget> createState() => _Tab2State();

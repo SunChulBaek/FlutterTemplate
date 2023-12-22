@@ -5,7 +5,7 @@ import '../../home/tab_page.dart';
 import '../../../resources/resources.dart';
 
 class Tab4Page extends TabPage {
-  const Tab4Page({Key? key, required int index}) : super(key: key, index: index);
+  const Tab4Page({super.key, required super.index});
 
   @override
   State<StatefulWidget> createState() => _Tab4State();

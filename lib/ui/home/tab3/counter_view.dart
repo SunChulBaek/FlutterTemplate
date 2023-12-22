@@ -26,7 +26,7 @@ class _CounterState extends State<CounterView> {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: Center(
-        child: Text('$state', style: textTheme.headline2)
+        child: Text('$state', style: textTheme.displayMedium)
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,

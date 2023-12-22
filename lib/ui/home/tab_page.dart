@@ -4,7 +4,7 @@ import 'package:flutter_template/event/bottom_nav_item_reselect_event.dart';
 import 'package:flutter_template/injectable.dart';
 
 abstract class TabPage extends StatefulWidget {
-  const TabPage({Key? key, required this.index}) : super(key: key);
+  const TabPage({super.key, required this.index});
 
   final int index;
 }

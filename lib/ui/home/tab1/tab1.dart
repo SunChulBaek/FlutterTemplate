@@ -9,7 +9,7 @@ import '../../model/ui_state.dart';
 import '../../../data/model/photo.dart';
 
 class Tab1Page extends TabPage {
-  const Tab1Page({Key? key, required int index, required this.onClickItem}) : super(key: key, index: index);
+  const Tab1Page({super.key, required super.index, required this.onClickItem});
 
   final void Function(BuildContext context, Object param) onClickItem;
 

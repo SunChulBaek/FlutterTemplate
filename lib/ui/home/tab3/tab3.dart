@@ -3,7 +3,7 @@ import 'counter_view.dart';
 import '../tab_page.dart';
 
 class Tab3Page extends TabPage {
-  const Tab3Page({Key? key, required int index}) : super(key: key, index: index);
+  const Tab3Page({super.key, required super.index});
 
   @override
   State<StatefulWidget> createState() => _Tab3State();
