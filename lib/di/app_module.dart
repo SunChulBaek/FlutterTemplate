@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class AppModule {
+
   @singleton
   EventBus get eventBus => EventBus();
 }
