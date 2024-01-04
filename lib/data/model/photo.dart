@@ -1,4 +1,3 @@
-import 'package:flutter_template/util/timber.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'photo.freezed.dart';
