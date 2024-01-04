@@ -6,19 +6,19 @@ part of 'response2.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Response2<T> _$Response2FromJson<T>(
+_$Response2Impl<T> _$$Response2ImplFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object? json) fromJsonT,
 ) =>
-    Response2<T>(
-      json['total'] as int,
-      json['skip'] as int,
-      json['limit'] as int,
-      fromJsonT(json['products']),
+    _$Response2Impl<T>(
+      total: json['total'] as int,
+      skip: json['skip'] as int,
+      limit: json['limit'] as int,
+      products: fromJsonT(json['products']),
     );
 
-Map<String, dynamic> _$Response2ToJson<T>(
-  Response2<T> instance,
+Map<String, dynamic> _$$Response2ImplToJson<T>(
+  _$Response2Impl<T> instance,
   Object? Function(T value) toJsonT,
 ) =>
     <String, dynamic>{

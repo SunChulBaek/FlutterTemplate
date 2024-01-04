@@ -4,10 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'photo.freezed.dart';
 part 'photo.g.dart';
 
-// flutter pub run build_runner build
-// flutter pub run build_runner watch
 @freezed
-@JsonSerializable()
 class Photo with _$Photo {
   factory Photo({
     @JsonKey(name: 'albumId') required int albumId,
@@ -17,12 +14,6 @@ class Photo with _$Photo {
     @JsonKey(name: 'thumbnailUrl') required String thumbnailUrl,
   }) = _Photo;
 
-  factory Photo.fromJson(Map<String, dynamic> json) {
-    try {
-      return _$PhotoFromJson(json);
-    } catch (e) {
-      Timber.e(e);
-    }
-    throw Exception('Photo.fromJson()');
-  }
+  factory Photo.fromJson(Map<String, dynamic> json)
+    => _$PhotoFromJson(json);
 }

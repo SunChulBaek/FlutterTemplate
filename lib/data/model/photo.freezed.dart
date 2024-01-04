@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Photo _$PhotoFromJson(Map<String, dynamic> json) {
+  return _Photo.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Photo {
   @JsonKey(name: 'albumId')
@@ -27,6 +31,7 @@ mixin _$Photo {
   @JsonKey(name: 'thumbnailUrl')
   String get thumbnailUrl => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PhotoCopyWith<Photo> get copyWith => throw _privateConstructorUsedError;
 }
@@ -146,7 +151,7 @@ class __$$PhotoImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$PhotoImpl implements _Photo {
   _$PhotoImpl(
       {@JsonKey(name: 'albumId') required this.albumId,
@@ -154,6 +159,9 @@ class _$PhotoImpl implements _Photo {
       @JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'url') required this.url,
       @JsonKey(name: 'thumbnailUrl') required this.thumbnailUrl});
+
+  factory _$PhotoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PhotoImplFromJson(json);
 
   @override
   @JsonKey(name: 'albumId')
@@ -189,6 +197,7 @@ class _$PhotoImpl implements _Photo {
                 other.thumbnailUrl == thumbnailUrl));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, albumId, id, title, url, thumbnailUrl);
@@ -198,6 +207,13 @@ class _$PhotoImpl implements _Photo {
   @pragma('vm:prefer-inline')
   _$$PhotoImplCopyWith<_$PhotoImpl> get copyWith =>
       __$$PhotoImplCopyWithImpl<_$PhotoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PhotoImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Photo implements Photo {
@@ -208,6 +224,8 @@ abstract class _Photo implements Photo {
           @JsonKey(name: 'url') required final String url,
           @JsonKey(name: 'thumbnailUrl') required final String thumbnailUrl}) =
       _$PhotoImpl;
+
+  factory _Photo.fromJson(Map<String, dynamic> json) = _$PhotoImpl.fromJson;
 
   @override
   @JsonKey(name: 'albumId')
